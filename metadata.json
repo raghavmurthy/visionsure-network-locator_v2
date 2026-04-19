@@ -1,0 +1,5 @@
+{
+  "name": "VisionSure Network Locator_v2",
+  "description": "A coverage mapping tool for VisionSure partners and offices using React, Leaflet, and Tailwind CSS.",
+  "requestFramePermissions": ["geolocation"]
+}
