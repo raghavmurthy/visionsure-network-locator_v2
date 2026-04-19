@@ -491,7 +491,8 @@ export default function App() {
           left: 0, right: 0, bottom: 0,
           overflow: 'hidden'
         }}>
-          <div style={{ position: 'absolute', inset: 0 }}>
+          {/* Map — fills everything */}
+          <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
             <MapView
               partners={filteredPartners}
               results={filteredResults}
@@ -503,7 +504,9 @@ export default function App() {
               nearestToUser={nearestToUser}
             />
           </div>
-          <div style={{ position: 'absolute', top: 24, left: 24, zIndex: 30 }}>
+
+          {/* Left Panel — Floating Glass Card */}
+          <div style={{ position: 'absolute', top: 24, left: 24, zIndex: 100 }}>
             <LeftPanel 
               mode={panelMode}
               lenskartCount={lenskartCount}
@@ -525,10 +528,24 @@ export default function App() {
           </div>
         </div>
       ) : (
-        <div style={{ position: 'fixed', left: 0, right: 0, bottom: 0, overflow: 'hidden' }}
+        <div style={{ position: 'fixed', left: 0, right: 0, bottom: 0, overflow: 'hidden', zIndex: 10 }}
              ref={el => { if (el) { const h = document.querySelector('header')?.offsetHeight ?? 52; el.style.top = h + 'px'; } }}>
           
-          <div style={{ position: 'absolute', top: 24, left: 24, zIndex: 30 }}>
+          {/* Map — fills everything */}
+          <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+            <MapView
+              partners={filteredPartners}
+              results={filteredResults}
+              selectedId={selectedId}
+              activeFilters={activeFilters}
+              highlightType={highlightType}
+              onHighlightEnd={() => setHighlightType(null)}
+              userLocation={userLocation}
+              nearestToUser={nearestToUser}
+            />
+          </div>
+
+          <div style={{ position: 'absolute', top: 24, left: 24, zIndex: 100 }}>
             <LeftPanel 
               mode={panelMode}
               lenskartCount={lenskartCount}
@@ -546,20 +563,6 @@ export default function App() {
               avgLenskart={avgLenskart}
               avgDrAgarwal={avgDrAgarwal}
               avgLawrenceMayo={avgLawrenceMayo}
-            />
-          </div>
-
-          {/* Map — fills everything */}
-          <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-            <MapView
-              partners={filteredPartners}
-              results={filteredResults}
-              selectedId={selectedId}
-              activeFilters={activeFilters}
-              highlightType={highlightType}
-              onHighlightEnd={() => setHighlightType(null)}
-              userLocation={userLocation}
-              nearestToUser={nearestToUser}
             />
           </div>
         </div>
