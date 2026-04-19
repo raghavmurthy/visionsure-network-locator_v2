@@ -485,12 +485,8 @@ export default function App() {
 
       {/* Split screen content */}
       {results.length === 0 ? (
-        <div style={{ 
-          position: 'fixed', 
-          top: 52, 
-          left: 0, right: 0, bottom: 0,
-          overflow: 'hidden'
-        }}>
+        <div style={{ position: 'fixed', left: 0, right: 0, bottom: 0, overflow: 'hidden', zIndex: 10 }}
+             ref={el => { if (el) { const h = document.querySelector('header')?.offsetHeight ?? 60; el.style.top = h + 'px'; } }}>
           {/* Map — fills everything */}
           <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
             <MapView
