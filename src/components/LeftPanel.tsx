@@ -148,9 +148,9 @@ export function LeftPanel(props: LeftPanelProps) {
       {mode === 'active' && (
         <>
           <div style={{ padding: '20px 24px', paddingTop: 20 }}>
-            {/* Fleet overview header */}
+            {/* Network overview header */}
             <p style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#7b7483', margin: '0 0 4px' }}>
-              Fleet Overview
+              Network Overview
             </p>
             <p style={{ fontSize: 28, fontWeight: 800, color: '#360679', margin: '0 0 2px', letterSpacing: '-0.02em' }}>
               {summary.excellentPct}% covered
