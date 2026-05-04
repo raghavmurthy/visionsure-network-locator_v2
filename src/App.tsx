@@ -45,7 +45,6 @@ export default function App() {
   const [activeFilters, setActiveFilters] = useState<string[]>(['Lenskart', 'Dr Agarwal', 'Lawrence & Mayo', 'office']);
   const [highlightType, setHighlightType] = useState<string | null>(null);
   const [userLocation, setUserLocation] = useState<{lat: number, lng: number} | null>(null);
-  const [showManualPanel, setShowManualPanel] = useState(false);
   const [showQuickCheck, setShowQuickCheck] = useState(false);
 
   const avgLenskart = useMemo(() => {
@@ -433,17 +432,6 @@ export default function App() {
           </div>
 
           <button
-            onClick={() => setShowManualPanel(!showManualPanel)}
-            style={{
-              padding: '7px 14px', borderRadius: 99, fontSize: 12, fontWeight: 600,
-              background: 'transparent', border: '1.5px solid #e7e0ea', color: '#4a4552',
-              cursor: 'pointer', whiteSpace: 'nowrap', flexShrink: 0
-            }}
-          >
-            Manual Input
-          </button>
-
-          <button
             onClick={addQuickCities}
             disabled={loading}
             style={{
@@ -457,31 +445,6 @@ export default function App() {
           </button>
         </div>
       </header>
-
-      {/* Manual Input Panel */}
-      {showManualPanel && (
-        <div style={{
-          position: 'fixed',
-          top: 64, // below header
-          right: 32,
-          width: 320,
-          zIndex: 60,
-          background: 'rgba(254, 247, 255, 0.88)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          boxShadow: '0px 12px 32px rgba(30,0,75,0.08)',
-          borderRadius: 16,
-          padding: 16,
-          border: '1px solid rgba(54, 6, 121, 0.1)'
-        }}>
-          <SearchBar 
-            onAdd={addOffice} 
-            variant="manual-panel" 
-            onAdded={() => setShowManualPanel(false)}
-            disabled={loading}
-          />
-        </div>
-      )}
 
       {/* Split screen content */}
       {results.length === 0 ? (

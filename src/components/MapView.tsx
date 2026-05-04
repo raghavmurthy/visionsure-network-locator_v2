@@ -126,7 +126,13 @@ function ProximityLines({
       if (p.data) {
         const poly = L.polyline(
           [[userLocation.lat, userLocation.lng], [p.data.store.lat, p.data.store.lng]],
-          { color: p.color, weight: 1.5, opacity: 0.5, dashArray: '4 4' }
+          { 
+            color: p.color, 
+            weight: 3, 
+            opacity: 1.0, 
+            dashArray: '6 6',
+            pane: 'overlayPane' 
+          }
         ).addTo(map);
         linesRef.current.push(poly);
       }
@@ -283,9 +289,9 @@ export function MapView({
                   positions={[[r.office.lat, r.office.lng], [r.nearestLenskart.lat, r.nearestLenskart.lng]]}
                   pathOptions={{ 
                     color: '#020047', 
-                    weight: isSelected ? 4 : 3, 
+                    weight: isSelected ? 4 : 2.5, 
                     dashArray: '4, 4', 
-                    opacity: isSelected ? 0.9 : 0.6,
+                    opacity: 1.0,
                     interactive: true
                   }}
                   eventHandlers={{
@@ -308,17 +314,17 @@ export function MapView({
           }
 
           if (r.nearestDrAgarwal) {
-            const midLat = (r.office.lat + r.nearestDrAgarwal.lat) / 2;
-            const midLng = (r.office.lng + r.nearestDrAgarwal.lng) / 2;
+            const midLat = ((r.office.lat - 0.00005) + r.nearestDrAgarwal.lat) / 2;
+            const midLng = ((r.office.lng + 0.00005) + r.nearestDrAgarwal.lng) / 2;
             lines.push(
               <div key={`${r.office.id}-da`}>
                 <Polyline
-                  positions={[[r.office.lat, r.office.lng], [r.nearestDrAgarwal.lat, r.nearestDrAgarwal.lng]]}
+                  positions={[[r.office.lat - 0.00005, r.office.lng + 0.00005], [r.nearestDrAgarwal.lat, r.nearestDrAgarwal.lng]]}
                   pathOptions={{ 
                     color: '#0252a1', 
-                    weight: isSelected ? 4 : 3, 
+                    weight: isSelected ? 4 : 2.5, 
                     dashArray: '4, 4', 
-                    opacity: isSelected ? 0.9 : 0.6,
+                    opacity: 1.0,
                     interactive: true
                   }}
                   eventHandlers={{
@@ -341,17 +347,17 @@ export function MapView({
           }
 
           if (r.nearestLawrenceMayo) {
-            const midLat = (r.office.lat + r.nearestLawrenceMayo.lat) / 2;
-            const midLng = (r.office.lng + r.nearestLawrenceMayo.lng) / 2;
+            const midLat = ((r.office.lat + 0.00005) + r.nearestLawrenceMayo.lat) / 2;
+            const midLng = ((r.office.lng - 0.00005) + r.nearestLawrenceMayo.lng) / 2;
             lines.push(
               <div key={`${r.office.id}-lm`}>
                 <Polyline
-                  positions={[[r.office.lat, r.office.lng], [r.nearestLawrenceMayo.lat, r.nearestLawrenceMayo.lng]]}
+                  positions={[[r.office.lat + 0.00005, r.office.lng - 0.00005], [r.nearestLawrenceMayo.lat, r.nearestLawrenceMayo.lng]]}
                   pathOptions={{ 
                     color: '#E51E1E', 
-                    weight: isSelected ? 4 : 3, 
+                    weight: isSelected ? 4 : 2.5, 
                     dashArray: '4, 4', 
-                    opacity: isSelected ? 0.9 : 0.6,
+                    opacity: 1.0,
                     interactive: true
                   }}
                   eventHandlers={{

@@ -22,6 +22,7 @@ export interface Office {
   name: string;
   lat: number;
   lng: number;
+  pincode?: string;
   addedAt: string;
 }
 
